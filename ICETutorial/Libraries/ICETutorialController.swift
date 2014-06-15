@@ -90,7 +90,7 @@ class ICETutorialController : UIViewController, UIScrollViewDelegate {
         self.pageControl!.frame = CGRectMake(141, 453, 36, 32)
         self.pageControl!.numberOfPages = self.numberOfPages()
         self.pageControl!.currentPage = 0
-        self.pageControl!.addTarget(self, action: Selector("didClickOnPageControl"), forControlEvents: UIControlEvents.ValueChanged)
+        self.pageControl!.addTarget(self, action: "didClickOnPageControl:", forControlEvents: UIControlEvents.ValueChanged)
         
         // UIButtons.
         self.leftButton!.frame = CGRectMake(20, 494, 130, 36)
@@ -99,8 +99,8 @@ class ICETutorialController : UIViewController, UIScrollViewDelegate {
         self.rightButton!.backgroundColor = UIColor.darkGrayColor()
         self.leftButton!.setTitle("Button 1", forState: UIControlState.Normal)
         self.rightButton!.setTitle("Button 2", forState: UIControlState.Normal)
-        self.leftButton!.addTarget(self, action: Selector("didClickOnButton1:"), forControlEvents: UIControlEvents.TouchUpInside)
-        self.rightButton!.addTarget(self, action: Selector("didClickOnButton2:"), forControlEvents: UIControlEvents.TouchUpInside)
+        self.leftButton!.addTarget(self, action: "didClickOnButton1:", forControlEvents: UIControlEvents.TouchUpInside)
+        self.rightButton!.addTarget(self, action: "didClickOnButton2:", forControlEvents: UIControlEvents.TouchUpInside)
 
         
         // Fetch on screen.
