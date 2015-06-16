@@ -46,23 +46,22 @@ All the available settings for the scrolling are located in the header : ICETuto
     subStyle.offsset = 150
 
     // Load into an array.
-    let listPages: ICETutorialPage[] = [layer1, layer2, layer3, layer4, layer5]
+    let listPages: [ICETutorialPage] = [layer1, layer2, layer3, layer4, layer5]
   
 ```
 
 **Init and load :**
-```objective-c
-   let controller: ICETutorialController = ICETutorialController(pages: listPages)
-
-    // Set the common styles, and start scrolling (auto scroll, and looping enabled by default)
+```swift
+    // Load the ICETutorialController.
+    let controller: ICETutorialController = ICETutorialController(pages: listPages)
+    
+    // Set the common styles, and start scrolling (auto scroll, and looping enabled by default)    
     controller.commonPageTitleStyle = titleStyle
     controller.commonPageSubTitleStyle = subStyle
-
-    // Run it.
     controller.startScrolling()
 ```
 
-**The title is located in the ICETutorial.m :**
+**The title is located in the ICETutorialController.swift :**
 ```swift
 // Setup the Title Label.
 func setOverlayTitle() {
@@ -71,7 +70,7 @@ func setOverlayTitle() {
 ```
 
 **Delegate implementation :**
-```objective-c
+```swift
 #pragma mark - ICETutorialController delegate
 - (void)tutorialController:(ICETutorialController *)tutorialController scrollingFromPageIndex:(NSUInteger)fromIndex toPageIndex:(NSUInteger)toIndex {
     NSLog(@"Scrolling from %lu to %lu", (unsigned long)fromIndex, (unsigned long)toIndex);
@@ -111,7 +110,7 @@ Questions or ideas : patrick.trillsam@gmail.com.
 
 The MIT License
 
-Copyright (c) 2013 Patrick Trillsam - ICETutorial
+Copyright (c) 2015 Patrick Trillsam - ICETutorial
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
