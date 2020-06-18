@@ -9,18 +9,16 @@
 import Foundation
 import UIKit
 
-class ICETutorialLabelStyle : NSObject {
+class ICETutorialLabelStyle {
     
     var text: String?
-    var font: UIFont?
-    var color: UIColor?
-    var linesNumber: Int = 0
-    var offsset: Int = 0
+    var font = UIFont.systemFont(ofSize: 17)
+    var color = UIColor.white
+    var linesNumber = 0
+    var offset: CGFloat = 0
     
-    init() {
-        super.init()
-    }
-
+    init() {}
+    
     init(text: String) {
         self.text = text
     }
@@ -30,17 +28,18 @@ class ICETutorialLabelStyle : NSObject {
         self.font = font
         self.color = color
     }
+
 }
 
 
-class ICETutorialPage : NSObject {
+class ICETutorialPage {
     
     var title: ICETutorialLabelStyle!
     var subTitle: ICETutorialLabelStyle!
     var pictureName: String?
-    var duration: NSTimeInterval?
+    var duration: TimeInterval?
     
-    init(title: String, subTitle: NSString, pictureName: String, duration: NSTimeInterval) {
+    init(title: String, subTitle: String, pictureName: String, duration: TimeInterval) {
         self.title = ICETutorialLabelStyle(text: title)
         self.subTitle = ICETutorialLabelStyle(text: subTitle)
         self.pictureName = pictureName
@@ -54,4 +53,5 @@ class ICETutorialPage : NSObject {
     func setTitleStyle(style: ICETutorialLabelStyle) {
         self.title = style
     }
+    
 }
