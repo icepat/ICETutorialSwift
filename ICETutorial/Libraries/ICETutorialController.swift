@@ -10,395 +10,376 @@ import Foundation
 import UIKit
 
 enum ScrollingState : Int {
-    case Auto
-    case Manual
-    case Looping
+    case auto
+    case manual
+    case looping
 }
 
 class ICETutorialController : UIViewController, UIScrollViewDelegate {
- 
-    var frontLayerView: UIImageView!
-    var backLayerView: UIImageView!
-    var scrollView: UIScrollView!
-    var pageControl: UIPageControl!
-    var leftButton: UIButton!
-    var rightButton: UIButton!
     
-    var overlayLogo: UILabel!
+    var frontLayerView = UIImageView()
+    var backLayerView = UIImageView()
+    var scrollView = UIScrollView()
+    var pageControl = UIPageControl()
+    var leftButton = UIButton()
+    var rightButton = UIButton()
     
-    var currentPageIndex: NSInteger!
-    var nextPageIndex: NSInteger?
-    var currentState: ScrollingState?
-    var windowSize: CGSize?
-    var pages: ICETutorialPage[]!
-    var autoScrollEnabled: Bool!
+    var overlayLogo = UILabel()
+    
+    var currentPageIndex = 0
+    var nextPageIndex = 0
+    var currentState = ScrollingState.auto
+    var pages: [ICETutorialPage]
+    var autoScrollEnabled = true
     var commonPageTitleStyle: ICETutorialLabelStyle!
     var commonPageSubTitleStyle: ICETutorialLabelStyle!
     
-    init(pages: ICETutorialPage[]) {
-        super.init(nibName: nil, bundle: nil)
-        
-        self.autoScrollEnabled = true
-        self.currentPageIndex = 0
-        // Auto-scrollDuration
+    init(pages: [ICETutorialPage]) {
         self.pages = pages
-        
-        self.frontLayerView = UIImageView()
-        self.backLayerView = UIImageView()
-        self.scrollView = UIScrollView()
-        
-        self.overlayLogo = UILabel()
-        self.pageControl = UIPageControl()
-        self.leftButton = UIButton()
-        self.rightButton = UIButton()
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view!.backgroundColor = UIColor.blackColor()
+        view?.backgroundColor = UIColor.black
         
-        self.setupView()
-
-        // Overlays.
-        self.setOverlayTexts()
-        self.setOverlayTitle()
+        setupView()
+        
+        // Overlays
+        setOverlayTexts()
+        setOverlayTitle()
         
         // Preset the origin state.
-        self.setOriginLayersState()
+        setOriginLayersState()
     }
     
     func setupView() {
-        self.frontLayerView!.frame = self.view.bounds
-        self.backLayerView!.frame = self.view.bounds
+        frontLayerView.frame = view.bounds
+        backLayerView.frame = view.bounds
         
-        // Decoration.
-        var gradientView = UIImageView(frame: CGRectMake(0, 368, 320, 200))
+        // Decoration
+        let gradientView = UIImageView(frame: view.bounds)
         gradientView.image = UIImage(named: "background-gradient.png")
         
-        // Title.
-        self.overlayLogo!.frame = CGRectMake(84, 116, 212, 50)
-        self.overlayLogo!.textColor = UIColor.whiteColor()
-        self.overlayLogo!.font = UIFont(name: "Helvetica-Bold", size: 32.0)
+        // Title
+        overlayLogo.frame = CGRect.init(origin: CGPoint.init(x: 0, y: 40), size: CGSize.init(width: view.bounds.size.width, height: 40))
+        overlayLogo.textColor = .white
+        overlayLogo.textAlignment = .center
+        overlayLogo.font = .boldSystemFont(ofSize: 32)
         
-        // ScrollView configuration.
-        self.scrollView!.frame = self.view.bounds
-        self.scrollView!.delegate = self
-        self.scrollView!.pagingEnabled = true
-        self.scrollView!.contentSize = CGSizeMake(5 * 320, self.view.bounds.height)
+        // ScrollView configuration
+        scrollView.frame = view.bounds
+        scrollView.delegate = self
+        scrollView.isPagingEnabled = true
+        scrollView.contentSize = CGSize(width: CGFloat(pages.count) * view.bounds.width, height: view.bounds.height)
         
-        // PageControl.
-        self.pageControl!.frame = CGRectMake(141, 453, 36, 32)
-        self.pageControl!.numberOfPages = self.numberOfPages()
-        self.pageControl!.currentPage = 0
-        self.pageControl!.addTarget(self, action: "didClickOnPageControl:", forControlEvents: UIControlEvents.ValueChanged)
+        // PageControl
+        var rect = CGRect.zero
+        rect.size.width = CGFloat(pages.count) * 8.0
+        rect.size.height = 32
+        rect.origin.x = (view.bounds.size.width - rect.size.width) / 2.0
+        rect.origin.y = view.bounds.size.height - 120
+        pageControl.frame = rect
+        pageControl.numberOfPages = pages.count
+        pageControl.currentPage = 0
+        pageControl.addTarget(self, action: #selector(didClickOnPageControl(sender:)), for: UIControl.Event.valueChanged)
         
-        // UIButtons.
-        self.leftButton!.frame = CGRectMake(20, 494, 130, 36)
-        self.rightButton!.frame = CGRectMake(172, 494, 130, 36)
-        self.leftButton!.backgroundColor = UIColor.darkGrayColor()
-        self.rightButton!.backgroundColor = UIColor.darkGrayColor()
-        self.leftButton!.setTitle("Button 1", forState: UIControlState.Normal)
-        self.rightButton!.setTitle("Button 2", forState: UIControlState.Normal)
-        self.leftButton!.addTarget(self, action: "didClickOnButton1:", forControlEvents: UIControlEvents.TouchUpInside)
-        self.rightButton!.addTarget(self, action: "didClickOnButton2:", forControlEvents: UIControlEvents.TouchUpInside)
-
+        // UIButtons
+        rect.size.width = 130
+        rect.size.height = 36
+        rect.origin.x = 30
+        rect.origin.y = view.bounds.size.height - 80.0
+        leftButton.frame = rect
+        rect.origin.x = view.bounds.size.width - rect.size.width - rect.origin.x
+        rightButton.frame = rect
+        leftButton.backgroundColor = .darkGray
+        rightButton.backgroundColor = .darkGray
+        leftButton.setTitle("Button 1", for: .normal)
+        rightButton.setTitle("Button 2", for: .normal)
+        leftButton.addTarget(self, action: #selector(didClickOnButton1(sender:)), for: .touchUpInside)
+        rightButton.addTarget(self, action: #selector(didClickOnButton2(sender:)), for: .touchUpInside)
         
-        // Fetch on screen.
-        self.view.addSubview(self.frontLayerView)
-        self.view.addSubview(self.backLayerView)
-        self.view.addSubview(gradientView)
-        self.view.addSubview(self.scrollView)
-        self.view.addSubview(self.overlayLogo)
-        self.view.addSubview(self.pageControl)
-        self.view.addSubview(self.leftButton)
-        self.view.addSubview(self.rightButton)
+        // Fetch on screen
+        view.addSubview(frontLayerView)
+        view.addSubview(backLayerView)
+        view.addSubview(gradientView)
+        view.addSubview(scrollView)
+        view.addSubview(overlayLogo)
+        view.addSubview(pageControl)
+        view.addSubview(leftButton)
+        view.addSubview(rightButton)
     }
     
-    func didClickOnButton1(sender: UIButton) {
+    @objc func didClickOnButton1(sender: UIButton) {
         
     }
     
-    func didClickOnButton2(sender: UIButton) {
+    @objc func didClickOnButton2(sender: UIButton) {
         
     }
     
-    func didClickOnPageControl(sender: UIPageControl) {
-        self.stopScrolling()
+    @objc func didClickOnPageControl(sender: UIPageControl) {
+        stopScrolling()
         
-        // Make the scrollView animation.
-        self.scrollToNextPageIndex(sender.currentPage)
+        // Make the scrollView animation
+        scrollToNextPageIndex(nextPageIndex: sender.currentPage)
     }
     
-    // Set the list of pages (ICETutorialPage).
-    func setPages(pages: ICETutorialPage[] ) {
+    // Set the list of pages (ICETutorialPage)
+    func setPages(pages: [ICETutorialPage] ) {
         self.pages = pages
     }
     
-    func numberOfPages() -> Int {
-        if (self.pages) {
-            return self.pages!.count
-        }
-        return 0
-    }
-    
-    func animateScrolling() {
-        if (self.currentState == ScrollingState.Manual) {
+    @objc func animateScrolling() {
+        if (currentState == ScrollingState.manual) {
             return;
         }
         
         // Jump to the next page...
-        var nextPage: Int = self.currentPageIndex! + 1
-        if (nextPage == self.numberOfPages()) {
+        var nextPage = currentPageIndex + 1
+        if (nextPage == pages.count) {
             // ...stop the auto-scrolling or...
-            if (!self.autoScrollEnabled) {
-                self.currentState = ScrollingState.Manual
+            if (!autoScrollEnabled) {
+                currentState = ScrollingState.manual
                 return;
             }
             
             // ...jump to the first page.
             nextPage = 0
-            self.currentState = ScrollingState.Looping
+            currentState = ScrollingState.looping
             
             // Set alpha on layers.
-            self.setOriginLayerAlpha()
-            self.setBackLayerPictureWithPageIndex(-1)
+            setOriginLayerAlpha()
+            setBackLayerPictureWithPageIndex(index: -1)
         } else {
-            self.currentState = ScrollingState.Auto
+            currentState = ScrollingState.auto
         }
         
         // Make the scrollView animation.
-        var nextPagePosition: Float = Float(nextPage) * 320
-        self.scrollView!.setContentOffset(CGPointMake(nextPagePosition, 0), animated: true)
+        let nextPagePosition = CGFloat(nextPage) * view.frame.size.width
+        scrollView.setContentOffset(CGPoint(x: nextPagePosition, y: 0), animated: true)
         
         // Set the PageControl on the right page.
-        self.pageControl!.currentPage = nextPage
+        pageControl.currentPage = nextPage
         
         // Call the next animation after X seconds.
-        self.autoScrollToNextPage()
+        autoScrollToNextPage()
     }
     
     func autoScrollToNextPage() {
-        let page: ICETutorialPage = self.pages[self.currentPageIndex!]
-        
-        if (self.autoScrollEnabled) {
-            NSTimer.scheduledTimerWithTimeInterval(page.duration!, target: self, selector: Selector("animateScrolling"), userInfo: nil, repeats: false)
+        if (autoScrollEnabled) {
+            Timer.scheduledTimer(timeInterval: pages[currentPageIndex].duration!, target: self, selector: #selector(animateScrolling), userInfo: nil, repeats: false)
         }
     }
     
     func scrollToNextPageIndex(nextPageIndex: NSInteger) {
         // Make the scrollView animation.
-        self.scrollView!.setContentOffset(CGPointMake(Float(nextPageIndex) * self.view.frame.size.width,0), animated: true)
+        scrollView.setContentOffset(CGPoint(x: CGFloat(nextPageIndex) * view.frame.size.width, y: 0), animated: true)
         
         // Set the PageControl on the right page.
-        self.pageControl!.currentPage = nextPageIndex
+        pageControl.currentPage = nextPageIndex
     }
     
     // Run it.
     func startScrolling() {
-        self.autoScrollToNextPage()
+        autoScrollToNextPage()
     }
     
     // Manually stop the scrolling
     func stopScrolling() {
-        self.currentState = ScrollingState.Manual
-    }
-    
-    // State.    
-    func getCurrentState() -> ScrollingState {
-        return self.currentState!
+        currentState = ScrollingState.manual
     }
     
     // Setup the Title Label.
     func setOverlayTitle() {
-        self.overlayLogo!.text = "Welcome"
+        overlayLogo.text = "Welcome"
     }
     
     // Setup the Title/Subtitle style/text.
     func setOverlayTexts() {
         var index: Int = 0
-        for page in self.pages! {
-            if (page.title.text) {
-                var title: UILabel = self.overlayLabelWithText(page.title.text!, style: page.title!, commonStyle: self.commonPageTitleStyle, index: index)
-                self.scrollView!.addSubview(title)
-            }
-            if (page.subTitle.text) {
-                var subTitle: UILabel = self.overlayLabelWithText(page.subTitle.text!, style: page.subTitle!, commonStyle: self.commonPageSubTitleStyle!, index: index)
-                self.scrollView!.addSubview(subTitle)
-            }
-            index++
+        for page in pages {
+            let title = overlayLabelWithText(text: page.title.text!, style: page.title!, commonStyle: commonPageTitleStyle, index: index)
+            scrollView.addSubview(title)
+            let subTitle = overlayLabelWithText(text: page.subTitle.text!, style: page.subTitle!, commonStyle: commonPageSubTitleStyle!, index: index)
+            scrollView.addSubview(subTitle)
+            index += 1
         }
     }
     
-    func overlayLabelWithText(text: NSString, style: ICETutorialLabelStyle, commonStyle: ICETutorialLabelStyle, index: NSInteger) -> UILabel {
-        var position: CGFloat = (CGFloat)(index * 320)
-        var positionY: CGFloat = (CGFloat)(540 - commonStyle.offsset)
-        var overlayLabel: UILabel = UILabel()
-        overlayLabel.frame = CGRectMake(position, positionY, 320, 34)
+    func overlayLabelWithText(text: String, style: ICETutorialLabelStyle, commonStyle: ICETutorialLabelStyle, index: Int) -> UILabel {
+        let position = CGFloat(index) * view.bounds.size.width
+        let positionY = view.bounds.size.height - commonStyle.offset
+        let overlayLabel = UILabel()
+        overlayLabel.frame = CGRect(x: position, y: positionY, width: view.bounds.size.width, height: 34)
         
         // SubTitles.
-        overlayLabel.setTranslatesAutoresizingMaskIntoConstraints(false)
+        overlayLabel.translatesAutoresizingMaskIntoConstraints = false
         overlayLabel.numberOfLines = commonStyle.linesNumber
-        overlayLabel.backgroundColor = UIColor.clearColor()
-        overlayLabel.textAlignment = NSTextAlignment.Center
-
+        overlayLabel.backgroundColor = .clear
+        overlayLabel.textAlignment = .center
+        
         // Datas and style.
-        overlayLabel.text = text
-        if (style.font) {
+        overlayLabel.text = text as String
+        overlayLabel.font = commonStyle.font
+        if (style.font != commonStyle.font) {
             overlayLabel.font = style.font
-        } else {
-            overlayLabel.font = commonStyle.font
         }
-        if (style.color) {
+        overlayLabel.textColor = commonStyle.color
+        if (style.color != commonStyle.color) {
             overlayLabel.textColor = style.color
-        } else {
-            overlayLabel.textColor = commonStyle.color
         }
-
+        
         return overlayLabel
     }
     
     // Handle the background layer image switch.
     func setBackLayerPictureWithPageIndex(index: NSInteger) {
-        self.setBackgroundImage(self.backLayerView!, pageIndex: index + 1)
+        setBackgroundImage(imageView: backLayerView, pageIndex: index + 1)
     }
     
     // Handle the front layer image switch.
     func setFrontLayerPictureWithPageIndex(index: NSInteger) {
-        self.setBackgroundImage(self.frontLayerView!, pageIndex: index)
+        setBackgroundImage(imageView: frontLayerView, pageIndex: index)
     }
     
     // Handle page image's loading
     func setBackgroundImage(imageView: UIImageView, pageIndex: NSInteger) {
-        if (pageIndex >= self.pages!.count) {
+        if (pageIndex >= pages.count) {
             imageView.image = nil
             return
         }
         
-        let page: ICETutorialPage = self.pages[pageIndex]
+        let page: ICETutorialPage = pages[pageIndex]
         imageView.image = UIImage(named: page.pictureName!)
     }
     
     // Setup layer's alpha.    
     func setOriginLayerAlpha() {
-        self.frontLayerView!.alpha = 1
-        self.backLayerView!.alpha = 0
+        frontLayerView.alpha = 1
+        backLayerView.alpha = 0
     }
     
     // Preset the origin state.    
     func setOriginLayersState() {
-        self.currentState = ScrollingState.Auto
-        self.backLayerView!.backgroundColor = UIColor.blackColor()
-        self.frontLayerView!.backgroundColor = UIColor.blackColor()
-        self.setLayersPicturesWithIndex(0)
+        currentState = ScrollingState.auto
+        backLayerView.backgroundColor = .black
+        frontLayerView.backgroundColor = .black
+        setLayersPicturesWithIndex(index: 0)
     }
-        
+    
     // Setup the layers with the page index.
     func setLayersPicturesWithIndex(index: NSInteger) {
-        self.currentPageIndex = index
-        self.setOriginLayerAlpha()
-        self.setFrontLayerPictureWithPageIndex(index)
-        self.setBackLayerPictureWithPageIndex(index)
+        currentPageIndex = index
+        setOriginLayerAlpha()
+        setFrontLayerPictureWithPageIndex(index: index)
+        setBackLayerPictureWithPageIndex(index: index)
     }
     
     // Animate the fade-in/out (Cross-disolve) with the scrollView translation.    
-    func disolveBackgroundWithContentOffset(offset: Float) {
-        if (self.currentState == ScrollingState.Looping) {
+    func disolveBackgroundWithContentOffset(offset: CGFloat) {
+        if (currentState == ScrollingState.looping) {
             // Jump from the last page to the first.
-            self.scrollingToFirstPageWithOffset(offset)
+            scrollingToFirstPageWithOffset(offset: offset)
         } else {
             // Or just scroll to the next/previous page.
-            self.scrollingToNextPageWithOffset(offset)
+            scrollingToNextPageWithOffset(offset: offset)
         }
     }
     
     // Handle alpha on layers when the auto-scrolling is looping to the first page.
-    func scrollingToFirstPageWithOffset(offset: Float) {
+    func scrollingToFirstPageWithOffset(offset: CGFloat) {
         // Compute the scrolling percentage on all the page.
-        let offsetX: Float = (offset * 320)
-        let numberOfPage: Float = 5
-        let offsetY: Float = (320 * numberOfPage)
-        let finalOffset: Float = offsetX / offsetY
+        let offsetX = offset * view.bounds.size.width
+        let numberOfPage = CGFloat(pages.count)
+        let offsetY = view.bounds.size.width * numberOfPage
+        let finalOffset = offsetX / offsetY
         
         // Scrolling finished...
-        if (offset == 0) {
-            self.setOriginLayersState()
+        if (finalOffset == 0) {
+            setOriginLayersState()
             return
         }
         
         // Invert alpha for the back picture.
-        var backLayerAlpha: Float = (1 - offset)
-        var frontLayerAlpha: Float = offset
+        let backLayerAlpha = 1.0 - finalOffset
+        let frontLayerAlpha = finalOffset
         
         // Set alpha.
-        self.backLayerView!.alpha = backLayerAlpha
-        self.frontLayerView!.alpha = frontLayerAlpha
+        backLayerView.alpha = backLayerAlpha
+        frontLayerView.alpha = frontLayerAlpha
     }
     
     // Handle alpha on layers when we are scrolling to the next/previous page.
-    func scrollingToNextPageWithOffset(offset: Float) {
+    func scrollingToNextPageWithOffset(offset: CGFloat) {
         // Current page index in scrolling.
-        var page: Int = Int(offset)
+        let page: Int = Int(offset)
         
         // Keep only the float value.
-        var alphaValue: Float = offset - Float(Int(offset));
+        let alphaValue = offset - CGFloat(Int(offset));
         
         // This is only when you scroll to the right on the first page.
         // That will fade-in black the first picture.
-        if (alphaValue < 0 && self.currentPageIndex == 0) {
-            self.backLayerView!.image = nil
-            self.frontLayerView!.alpha = (1 + alphaValue)
+        if (alphaValue < 0 && currentPageIndex == 0) {
+            backLayerView.image = nil
+            frontLayerView.alpha = 1.0 + alphaValue
             return
         }
         
         // Switch pictures, and imageView alpha.
-        if (page != self.currentPageIndex ||
-            (page == self.currentPageIndex && 0.0 < offset && offset < 1.0)) {
-            self.setLayersPicturesWithIndex(page)
+        if (page != currentPageIndex ||
+            (page == currentPageIndex && 0.0 < offset && offset < 1.0)) {
+            setLayersPicturesWithIndex(index: page)
         }
         
         // Invert alpha for the front picture.
-        var backLayerAlpha: Float = alphaValue
-        var frontLayerAlpha: Float = (1 - alphaValue)
+        let backLayerAlpha = alphaValue
+        let frontLayerAlpha = 1.0 - alphaValue
         
         // Set alpha.
-        self.backLayerView!.alpha = backLayerAlpha
-        self.frontLayerView!.alpha = frontLayerAlpha
+        backLayerView.alpha = backLayerAlpha
+        frontLayerView.alpha = frontLayerAlpha
     }
-
-    func scrollViewDidScroll(scrollView: UIScrollView!) {
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
         // Get scrolling position, and nextPageindex.
-        var scrollingPosition: Float = self.scrollView!.contentOffset.x / 320.0
-        var nextPageIndex: Int = Int(scrollingPosition)
+        let scrollingPosition = scrollView.contentOffset.x / view.bounds.size.width
+        var nextPageIndex = Int(scrollingPosition)
         
         // If we are looping, we reset the indexPage.
-        if (self.currentState == ScrollingState.Looping) {
+        if (currentState == ScrollingState.looping) {
             nextPageIndex = 0
         }
         
         // If we are going to the next page, let's call the delegate.
-        if (nextPageIndex != self.nextPageIndex) {
+        if (self.nextPageIndex != nextPageIndex) {
             // DELEGATE
             self.nextPageIndex = nextPageIndex
         }
         
         // Delegate when we reach the end.
-        if (self.nextPageIndex == self.numberOfPages() - 1) {
+        if (nextPageIndex == pages.count - 1) {
             // DELEGATE
         }
         
         // Animate.
-        self.disolveBackgroundWithContentOffset(scrollingPosition)
+        disolveBackgroundWithContentOffset(offset: scrollingPosition)
     }
     
-    func scrollViewWillBeginDragging(scrollView: UIScrollView!) {
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         // At the first user interaction, we disable the auto scrolling.
-        if (self.scrollView!.tracking) {
-            self.stopScrolling()
+        if (scrollView.isTracking) {
+            stopScrolling()
         }
     }
     
-    func scrollViewDidEndDecelerating(scrollView: UIScrollView!) {
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         // Update the page index.
-        self.pageControl!.currentPage = self.currentPageIndex!;
+        pageControl.currentPage = currentPageIndex;
     }
+    
 }

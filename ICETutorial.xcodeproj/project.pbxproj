@@ -12,11 +12,6 @@
 		55A1D56D193FEFCC00994874 /* ICETutorialTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55A1D56C193FEFCC00994874 /* ICETutorialTests.swift */; };
 		55A1D583193FF01600994874 /* background-gradient.png in Resources */ = {isa = PBXBuildFile; fileRef = 55A1D577193FF01600994874 /* background-gradient.png */; };
 		55A1D584193FF01600994874 /* background-gradient@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 55A1D578193FF01600994874 /* background-gradient@2x.png */; };
-		55A1D585193FF01600994874 /* button-background.png in Resources */ = {isa = PBXBuildFile; fileRef = 55A1D579193FF01600994874 /* button-background.png */; };
-		55A1D586193FF01600994874 /* button-background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 55A1D57A193FF01600994874 /* button-background@2x.png */; };
-		55A1D587193FF01600994874 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 55A1D57B193FF01600994874 /* Default-568h@2x.png */; };
-		55A1D588193FF01600994874 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 55A1D57C193FF01600994874 /* Default.png */; };
-		55A1D589193FF01600994874 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 55A1D57D193FF01600994874 /* Default@2x.png */; };
 		55A1D58A193FF01600994874 /* tutorial_background_00@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 55A1D57E193FF01600994874 /* tutorial_background_00@2x.jpg */; };
 		55A1D58B193FF01600994874 /* tutorial_background_01@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 55A1D57F193FF01600994874 /* tutorial_background_01@2x.jpg */; };
 		55A1D58C193FF01600994874 /* tutorial_background_02@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 55A1D580193FF01600994874 /* tutorial_background_02@2x.jpg */; };
@@ -24,6 +19,7 @@
 		55A1D58E193FF01600994874 /* tutorial_background_04@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 55A1D582193FF01600994874 /* tutorial_background_04@2x.jpg */; };
 		55A1D597193FF05400994874 /* ICETutorialPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55A1D596193FF05400994874 /* ICETutorialPage.swift */; };
 		55A1D5F3193FFA9300994874 /* ICETutorialController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55A1D5F2193FFA9300994874 /* ICETutorialController.swift */; };
+		5626A6A2249AFF8300390246 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5626A6A1249AFF8300390246 /* Launch Screen.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,11 +42,6 @@
 		55A1D56C193FEFCC00994874 /* ICETutorialTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ICETutorialTests.swift; sourceTree = "<group>"; };
 		55A1D577193FF01600994874 /* background-gradient.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "background-gradient.png"; sourceTree = "<group>"; };
 		55A1D578193FF01600994874 /* background-gradient@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "background-gradient@2x.png"; sourceTree = "<group>"; };
-		55A1D579193FF01600994874 /* button-background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "button-background.png"; sourceTree = "<group>"; };
-		55A1D57A193FF01600994874 /* button-background@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "button-background@2x.png"; sourceTree = "<group>"; };
-		55A1D57B193FF01600994874 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
-		55A1D57C193FF01600994874 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
-		55A1D57D193FF01600994874 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		55A1D57E193FF01600994874 /* tutorial_background_00@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "tutorial_background_00@2x.jpg"; sourceTree = "<group>"; };
 		55A1D57F193FF01600994874 /* tutorial_background_01@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "tutorial_background_01@2x.jpg"; sourceTree = "<group>"; };
 		55A1D580193FF01600994874 /* tutorial_background_02@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "tutorial_background_02@2x.jpg"; sourceTree = "<group>"; };
@@ -58,6 +49,7 @@
 		55A1D582193FF01600994874 /* tutorial_background_04@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "tutorial_background_04@2x.jpg"; sourceTree = "<group>"; };
 		55A1D596193FF05400994874 /* ICETutorialPage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ICETutorialPage.swift; sourceTree = "<group>"; };
 		55A1D5F2193FFA9300994874 /* ICETutorialController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ICETutorialController.swift; sourceTree = "<group>"; };
+		5626A6A1249AFF8300390246 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,6 +96,7 @@
 				55A1D55E193FEFCC00994874 /* AppDelegate.swift */,
 				55A1D560193FEFCC00994874 /* Images.xcassets */,
 				55A1D55C193FEFCC00994874 /* Supporting Files */,
+				5626A6A1249AFF8300390246 /* Launch Screen.storyboard */,
 			);
 			path = ICETutorial;
 			sourceTree = "<group>";
@@ -138,11 +131,6 @@
 			children = (
 				55A1D577193FF01600994874 /* background-gradient.png */,
 				55A1D578193FF01600994874 /* background-gradient@2x.png */,
-				55A1D579193FF01600994874 /* button-background.png */,
-				55A1D57A193FF01600994874 /* button-background@2x.png */,
-				55A1D57B193FF01600994874 /* Default-568h@2x.png */,
-				55A1D57C193FF01600994874 /* Default.png */,
-				55A1D57D193FF01600994874 /* Default@2x.png */,
 				55A1D57E193FF01600994874 /* tutorial_background_00@2x.jpg */,
 				55A1D57F193FF01600994874 /* tutorial_background_01@2x.jpg */,
 				55A1D580193FF01600994874 /* tutorial_background_02@2x.jpg */,
@@ -206,24 +194,29 @@
 		55A1D551193FEFCC00994874 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0600;
+				LastUpgradeCheck = 1150;
 				ORGANIZATIONNAME = "Patrick Trillsam";
 				TargetAttributes = {
 					55A1D558193FEFCC00994874 = {
 						CreatedOnToolsVersion = 6.0;
+						LastSwiftMigration = 1150;
+						ProvisioningStyle = Automatic;
 					};
 					55A1D565193FEFCC00994874 = {
 						CreatedOnToolsVersion = 6.0;
+						LastSwiftMigration = 1150;
+						ProvisioningStyle = Automatic;
 						TestTargetID = 55A1D558193FEFCC00994874;
 					};
 				};
 			};
 			buildConfigurationList = 55A1D554193FEFCC00994874 /* Build configuration list for PBXProject "ICETutorial" */;
 			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				Base,
 			);
 			mainGroup = 55A1D550193FEFCC00994874;
 			productRefGroup = 55A1D55A193FEFCC00994874 /* Products */;
@@ -241,18 +234,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				55A1D589193FF01600994874 /* Default@2x.png in Resources */,
 				55A1D58C193FF01600994874 /* tutorial_background_02@2x.jpg in Resources */,
 				55A1D58B193FF01600994874 /* tutorial_background_01@2x.jpg in Resources */,
 				55A1D561193FEFCC00994874 /* Images.xcassets in Resources */,
-				55A1D586193FF01600994874 /* button-background@2x.png in Resources */,
 				55A1D58A193FF01600994874 /* tutorial_background_00@2x.jpg in Resources */,
 				55A1D58E193FF01600994874 /* tutorial_background_04@2x.jpg in Resources */,
-				55A1D585193FF01600994874 /* button-background.png in Resources */,
+				5626A6A2249AFF8300390246 /* Launch Screen.storyboard in Resources */,
 				55A1D584193FF01600994874 /* background-gradient@2x.png in Resources */,
-				55A1D588193FF01600994874 /* Default.png in Resources */,
 				55A1D583193FF01600994874 /* background-gradient.png in Resources */,
-				55A1D587193FF01600994874 /* Default-568h@2x.png in Resources */,
 				55A1D58D193FF01600994874 /* tutorial_background_03@2x.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -300,24 +289,37 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -330,7 +332,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
 				METAL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -343,17 +345,28 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -361,15 +374,17 @@
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
 				METAL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -379,10 +394,15 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = ICETutorial/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "Patrick-Trillsam.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = ICETutorial;
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -390,17 +410,26 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = ICETutorial/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "Patrick-Trillsam.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = ICETutorial;
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
 		55A1D574193FEFCC00994874 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/ICETutorialSwift.app/ICETutorialSwift";
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -409,27 +438,39 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = ICETutorialSwiftTests/Info.plist;
+				INFOPLIST_FILE = ICETutorialTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				METAL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "Patrick-Trillsam.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = ICETutorialTests;
-				TEST_HOST = "$(BUNDLE_LOADER)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "";
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ICETutorial.app/ICETutorial";
 			};
 			name = Debug;
 		};
 		55A1D575193FEFCC00994874 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/ICETutorialSwift.app/ICETutorialSwift";
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = ICETutorialSwiftTests/Info.plist;
+				INFOPLIST_FILE = ICETutorialTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				METAL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = "Patrick-Trillsam.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = ICETutorialTests;
-				TEST_HOST = "$(BUNDLE_LOADER)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "";
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ICETutorial.app/ICETutorial";
 			};
 			name = Release;
 		};
